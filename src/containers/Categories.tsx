@@ -1,4 +1,6 @@
 import { Fragment } from "react"
+import CategorySelector from "../components/CategorySelector"
+import CategoriesData from "../configs/categoriesData"
 import classes from './Categories.module.scss'
 
 interface CategoriesProps {}
@@ -6,7 +8,11 @@ interface CategoriesProps {}
 const Categories = (props: CategoriesProps) => {
 return (
     <Fragment>
-        <div id="Categories" className={classes.Categories}></div>
+        <div id="Categories" className={classes.Categories}>
+            {
+                CategoriesData.map((cat) => <CategorySelector category={cat}/>)
+            }
+        </div>
     </Fragment>
 )
 }

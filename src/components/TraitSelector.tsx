@@ -1,14 +1,25 @@
-import { Fragment } from "react"
+import { Trait } from '../types';
 import classes from './TraitSelector.module.scss'
 
-interface TraitSelectorProps {}
+interface TraitSelectorProps {
+    trait: Trait
+}
 
 const TraitSelector = (props: TraitSelectorProps) => {
-return (
-    <Fragment>
-        <div id="TraitSelector" className={classes.TraitSelector}></div>
-    </Fragment>
-)
+    const { trait } = props
+    const urlPrefix = process.env.PUBLIC_URL + "/assets/traits";
+    return (
+      <div
+        className={classes.TraitSelector}
+        data-trait={trait.imageName}
+      >
+        <img
+          src={urlPrefix + "/" + trait.imageName + ".png"}
+          alt={trait.imageName}
+        />
+        
+      </div>
+    );
 }
 
 export default TraitSelector

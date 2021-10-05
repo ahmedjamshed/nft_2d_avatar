@@ -3,6 +3,30 @@ import layerOrder from "./layerOrder";
 
 const CategoriesData: Readonly<Category[]> = Object.freeze([
     {
+        name: 'Base',
+        layerOrder: layerOrder.BASE,
+        traits: [
+            {
+                id: 'base_red_blue',
+                imageName: 'base_red_blue',
+                parentType: 'Base',
+                layerOrder: layerOrder.BASE,
+            }
+        ]
+    },
+    {
+        name: 'Skin',
+        layerOrder: layerOrder.SKIN,
+        traits: [
+            {
+                id: 'main_skin',
+                imageName: 'main_skin',
+                parentType: 'Skin',
+                layerOrder: layerOrder.SKIN,
+            },
+        ]
+    },
+    {
         name: 'Hair',
         layerOrder: layerOrder.HAIR,
         traits: [

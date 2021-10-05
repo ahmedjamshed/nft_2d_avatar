@@ -1,3 +1,8 @@
 .CategorySelector {
     display: flex;
+    cursor: pointer;
+}
+
+.selected {
+    color: aqua;
 }

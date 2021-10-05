@@ -1,14 +1,26 @@
-import { Fragment } from "react"
+import { Trait } from "../types"
 import classes from './TraitLayer.module.scss'
 
-interface TraitLayerProps {}
+interface TraitLayerProps {
+    trait: Trait
+}
 
 const TraitLayer = (props: TraitLayerProps) => {
-return (
-    <Fragment>
-        <div id="TraitLayer" className={classes.TraitLayer}></div>
-    </Fragment>
-)
+    const { trait } = props 
+    const urlPrefix = process.env.PUBLIC_URL + '/assets/traits'
+    return (
+        <div
+            className={classes.TraitLayer}
+            style={{ zIndex: trait.layerOrder }}
+            data-trait={trait.imageName}
+        >
+            <img
+                className={"traitLayer"}
+                src={urlPrefix + "/" + trait.imageName + ".png"}
+                alt={trait.imageName}
+            />
+        </div>
+    )
 }
 
 export default TraitLayer
