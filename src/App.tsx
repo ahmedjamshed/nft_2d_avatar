@@ -1,3 +1,4 @@
+import { Provider } from "react-redux";
 import classes from "./App.module.scss"
 import Avatar from "./containers/Avatar";
 import Categories from "./containers/Categories";
@@ -8,13 +9,13 @@ import Store from "./store";
 
 function App() {
   return (
-    <Store>
+    <Provider store={Store}>
       <div className={classes.App}>
         <Categories />
         <Avatar />
         <Traits />
       </div>
-    </Store>
+    </Provider>
   );
 }
 

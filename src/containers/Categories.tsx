@@ -1,20 +1,19 @@
-import { Fragment } from "react"
+import { useSelector } from "react-redux"
 import CategorySelector from "../components/CategorySelector"
-import CategoriesData from "../configs/categoriesData"
+import { categorySelectors } from "../store/CategorySlice"
 import classes from './Categories.module.scss'
 
-interface CategoriesProps {}
+interface CategoriesProps { }
 
 const Categories = (props: CategoriesProps) => {
-return (
-    <Fragment>
+    const categories = useSelector(categorySelectors.selectAll)
+    return (
         <div id="Categories" className={classes.Categories}>
             {
-                CategoriesData.map((cat) => <CategorySelector category={cat}/>)
+                categories.map((cat) => <CategorySelector key={cat.name} category={cat} />)
             }
         </div>
-    </Fragment>
-)
+    )
 }
 
 export default Categories

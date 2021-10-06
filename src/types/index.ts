@@ -1,12 +1,11 @@
 export interface Trait {
     id: string,
     imageName: string,
-    parentType: string,
-    layerOrder: number,
+    category: string
 }
 
 export interface Category {
     name: string,
-    layerOrder: number,
-    traits: Trait[]
+    zIndex: number,
+    isRemovable: boolean
 }

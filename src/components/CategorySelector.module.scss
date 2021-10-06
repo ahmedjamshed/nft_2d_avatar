@@ -1,8 +1,9 @@
 .CategorySelector {
     display: flex;
     cursor: pointer;
+    margin: 5px;
 }
 
 .selected {
-    color: aqua;
+    color: red;
 }

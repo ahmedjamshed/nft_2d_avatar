@@ -1,0 +1,74 @@
+[
+    {
+       "name": "BASE",
+       "zIndex": 0,
+       "isRemovable": false
+    },
+    {
+        "name": "SKIN",
+        "zIndex": 1,
+        "isRemovable": false
+     },
+     {
+        "name": "HAIR",
+        "zIndex": 2,
+        "isRemovable": true
+     },
+     {
+        "name": "CLOTH",
+        "zIndex": 3,
+        "isRemovable": true
+     },
+     {
+        "name": "SHOULDER",
+        "zIndex": 4,
+        "isRemovable": true
+     },
+     {
+        "name": "LOWER_MASK",
+        "zIndex": 5,
+        "isRemovable": true
+     },
+     {
+        "name": "UPPER_MASK",
+        "zIndex": 6,
+        "isRemovable": true
+     },
+     {
+        "name": "FULL_MASK",
+        "zIndex": 7,
+        "isRemovable": true
+     },
+     {
+        "name": "HAT",
+        "zIndex": 8,
+        "isRemovable": true
+     },
+     {
+        "name": "HAT_HOOD",
+        "zIndex": 9,
+        "isRemovable": true
+     },
+     {
+        "name": "HOOD",
+        "zIndex": 10,
+        "isRemovable": true
+     },
+     {
+        "name": "HELMET",
+        "zIndex": 11,
+        "isRemovable": true
+     },
+
+     {
+        "name": "ARMOR",
+        "zIndex": 12,
+        "isRemovable": true
+     },
+
+     {
+        "name": "TOP_ACCESSORY",
+        "zIndex": 13,
+        "isRemovable": true
+     }
+]

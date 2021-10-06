@@ -1,6 +1,7 @@
 import classNames from "classnames"
-import { useContext } from "react"
-import AppContext from "../store/AppContext"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "../store"
+import { selectCategory } from "../store/CategorySlice"
 import { Category } from "../types"
 import classes from './CategorySelector.module.scss'
 
@@ -10,16 +11,15 @@ interface CategorySelectorProps {
 
 const CategorySelector = (props: CategorySelectorProps) => {
     const { category } = props
-    const { selectedCategory, setSelectedCategory } = useContext(AppContext)
+    const selectedCategory: Category = useSelector<RootState>(state => state.categories.selectedCategory) as Category
+    const dispatch = useDispatch();
     return (
 
         <div id="CategorySelector"
             className={classNames(classes.CategorySelector, {
-                [classes.selected]: category.name === selectedCategory.name
+                [classes.selected]: category.name === selectedCategory?.name
             })}
-            onClick={() => {
-                setSelectedCategory(category)
-            }}>
+            onClick={() => dispatch(selectCategory(category))}>
             {category.name}
         </div>
 

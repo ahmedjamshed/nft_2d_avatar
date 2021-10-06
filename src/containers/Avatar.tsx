@@ -1,25 +1,29 @@
 import classNames from "classnames"
-import { Fragment, useContext } from "react"
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
 import TraitLayer from "../components/TraitLayer"
-import AppContext from "../store/AppContext"
+import { avatarSelectors } from "../store/AvatarSlice"
 import { Trait } from "../types"
 import classes from './Avatar.module.scss'
 
 interface AvatarProps { }
 
 const Avatar = (props: AvatarProps) => {
-    const { avatarTraits } = useContext(AppContext)
+    const avatarTraits = useSelector(avatarSelectors.selectAll)
+    const [selectedTraits, setSelectedTraits] = useState<Trait[]>([])
+
+    useEffect(() => {
+        setSelectedTraits(Array.from(avatarTraits.values()));
+    }, [avatarTraits])
     return (
-        <Fragment>
-            <div
-                id="avatar"
-                className={classNames(classes.Avatar)}
-            >
-                {avatarTraits.map((trait: Trait, index: number) =>
-                   <TraitLayer key={index} trait={trait} />
-                )}
-            </div>
-        </Fragment>
+        <div
+            id="avatar"
+            className={classNames(classes.Avatar)}
+        >
+            {selectedTraits.map((trait: Trait, index: number) =>
+                <TraitLayer key={index} trait={trait} />
+            )}
+        </div>
     )
 }
 

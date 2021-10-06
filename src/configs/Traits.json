@@ -1,0 +1,37 @@
+[
+    {
+        "id": "base_red_blue",
+        "imageName": "base_red_blue",
+        "category": "BASE"
+    },
+    {
+        "id": "main_skin",
+        "imageName": "main_skin",
+        "category": "SKIN"
+    },
+    {
+        "id": "king_hair",
+        "imageName": "king_hair",
+        "category": "HAIR"
+    },
+    {
+        "id": "knight_hair",
+        "imageName": "knight_hair",
+        "category": "HAIR"
+    },
+    {
+        "id": "punk_hair",
+        "imageName": "punk_hair",
+        "category": "HAIR"
+    },
+    {
+        "id": "king_crown",
+        "imageName": "king_crown",
+        "category": "HELMET"
+    },
+    {
+        "id": "knight_helmet",
+        "imageName": "punk_hair",
+        "category": "HELMET"
+    }
+]
