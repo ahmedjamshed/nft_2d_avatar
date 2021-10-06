@@ -1,6 +1,7 @@
 .Traits {
     display: flex;
-    margin: 0;
-    position: absolute;
-    bottom: 0;
+    position: relative;
+    flex-direction: row;
+    align-self: flex-end;
+    justify-content: center;
 }

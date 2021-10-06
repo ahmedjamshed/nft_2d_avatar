@@ -1,3 +1,14 @@
 .TraitSelector {
-    display: flex;
+    flex: 0 1 100px; /*  No stretching: */
+    margin: 5px;
+    height: 100px;
+    width: 100px;
+    img {
+        max-height: 100%;
+        max-width: 100%;
+    }
+}
+
+.selected {
+    border: 5px solid black;
 }
