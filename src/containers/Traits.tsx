@@ -20,9 +20,11 @@ const Traits = (props: TraitsProps) => {
     }, [selectedCategory, traits])
     return (
         <div id="Traits" className={classes.Traits}>
-            {
-                selectedTraits.map((trait) => <TraitSelector key={trait.id} trait={trait} />)
-            }
+            <div className={classes.TraitsGrid}>
+                {
+                    selectedTraits.map((trait) => <TraitSelector key={trait.id} trait={trait} />)
+                }
+            </div>
         </div>
     )
 }

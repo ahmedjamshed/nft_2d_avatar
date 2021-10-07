@@ -1,6 +1,28 @@
 .App {
-  height: 100vh;
-  min-height: 100vh;
   display: flex;
-  margin: 0;
+  flex: 1;
+  flex-direction: row;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.Selector {
+  display: flex;
+  flex: 1;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.Avatar {
+  display: flex;
+  height: 100vh;
+  flex: 1;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .App {
+    flex-direction: column-reverse;
+
+  }
 }

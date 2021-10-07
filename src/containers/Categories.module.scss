@@ -1,6 +1,13 @@
 .Categories {
+    direction: rtl;
     display: flex;
     flex-direction: column;
-    position: absolute;
-    left: 0;
+    flex: 1;
+    position: relative;
+    overflow-y: scroll;
+    background-color: yellow;
+}
+
+@media (max-width: 768px) {
+    
 }

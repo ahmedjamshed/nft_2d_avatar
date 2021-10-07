@@ -11,9 +11,13 @@ function App() {
   return (
     <Provider store={Store}>
       <div className={classes.App}>
-        <Categories />
-        <Avatar />
-        <Traits />
+        <div className={classes.Selector}>
+          <Categories />
+          <Traits />
+        </div>
+        <div className={classes.Avatar}>
+          <Avatar />
+        </div>
       </div>
     </Provider>
   );

@@ -4,7 +4,7 @@ import { Trait } from '../../types'
 import TRAITS from '../../configs/Traits.json';
 
 const AvatarAdapter = createEntityAdapter<Trait>({
-    selectId: (trait) => trait.category,
+    selectId: (trait) => trait.category, // category id to apply only one trat from a category.
     sortComparer: (a, b) => a.category.localeCompare(b.category),
 })
 
@@ -14,11 +14,11 @@ const avatarSlice = createSlice({
     name: 'avatarSlice',
     initialState,
     reducers: {
-        addTraitToAvatar: AvatarAdapter.addOne,
+        upsertTraitToAvatar: AvatarAdapter.upsertOne,
         removeTraitFromAvatar: AvatarAdapter.removeOne
     },
 })
 
-export const { addTraitToAvatar } = avatarSlice.actions
+export const { upsertTraitToAvatar, removeTraitFromAvatar } = avatarSlice.actions
 export const avatarSelectors = AvatarAdapter.getSelectors<RootState>(state => state.avatar)
 export default avatarSlice.reducer

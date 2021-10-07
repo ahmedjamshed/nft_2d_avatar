@@ -1,7 +1,14 @@
 .Traits {
     display: flex;
-    position: relative;
-    flex-direction: row;
-    align-self: flex-end;
+    flex: 2;
     justify-content: center;
+    align-items: flex-start;
+    overflow-y: scroll;
+    background-color: black;
+}
+.TraitsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    align-items: flex-start;
 }

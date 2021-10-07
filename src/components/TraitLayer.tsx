@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import { RootState } from "../store"
 import { categorySelectors } from "../store/CategorySlice"
-import { Trait } from "../types"
+import { Category, Trait } from "../types"
 import classes from './TraitLayer.module.scss'
 
 interface TraitLayerProps {
@@ -9,8 +9,9 @@ interface TraitLayerProps {
 }
 
 const TraitLayer = (props: TraitLayerProps) => {
-    const { trait } = props 
-    const zIndex = useSelector<RootState>(state => categorySelectors.selectById(state, trait.category)) as number || 0
+    const { trait } = props
+    const { zIndex } = useSelector<RootState>(state =>
+        categorySelectors.selectById(state, trait.category)) as (Category | { zIndex: 0 })
     const urlPrefix = process.env.PUBLIC_URL + '/assets/traits'
     return (
         <div
