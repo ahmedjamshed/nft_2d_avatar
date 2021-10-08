@@ -6,23 +6,58 @@
   overflow: hidden;
 }
 
-.Selector {
+.SelectorContainer {
   display: flex;
   flex: 1;
   height: 100vh;
+  overflow: hidden;
+}
+
+.AvatarContainer {
+  display: flex;
+  position: relative;
+  height: 100vh;
+  flex: 1;
+  flex-direction: column;
   overflow: hidden;
 }
 
 .Avatar {
   display: flex;
-  height: 100vh;
+  height: 100%;
+  width: 100%;
   flex: 1;
-  overflow: hidden;
+}
+
+.ToolbarContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: white;
+  align-items: center;
+  padding: 15px;
+}
+
+button {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  &:hover {
+    background-color: gray;
+  }
 }
 
 @media (max-width: 768px) {
   .App {
     flex-direction: column-reverse;
-
+  }
+  .AvatarContainer {
+    flex-direction: column-reverse;
   }
 }

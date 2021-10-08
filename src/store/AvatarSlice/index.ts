@@ -15,10 +15,11 @@ const avatarSlice = createSlice({
     initialState,
     reducers: {
         upsertTraitToAvatar: AvatarAdapter.upsertOne,
-        removeTraitFromAvatar: AvatarAdapter.removeOne
+        removeTraitFromAvatar: AvatarAdapter.removeOne,
+        resetAvatar: () => initialState
     },
 })
 
-export const { upsertTraitToAvatar, removeTraitFromAvatar } = avatarSlice.actions
+export const { upsertTraitToAvatar, removeTraitFromAvatar, resetAvatar } = avatarSlice.actions
 export const avatarSelectors = AvatarAdapter.getSelectors<RootState>(state => state.avatar)
 export default avatarSlice.reducer
