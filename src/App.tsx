@@ -1,5 +1,5 @@
-import { useCallback } from "react";
-import { useDispatch } from "react-redux"
+import { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux"
 import classes from "./App.module.scss"
 import Avatar from "./containers/Avatar"
 import Categories from "./containers/Categories"
@@ -7,16 +7,27 @@ import Traits from "./containers/Traits"
 
 import { toPng } from 'html-to-image'
 import { FaSave, FaSyncAlt } from "react-icons/fa"
-import { resetAvatar } from "./store/AvatarSlice";
+import { avatarSelectors, resetAvatar } from "./store/AvatarSlice";
+import { Trait } from "./types";
+
 
 
 function App() {
   const dispatch = useDispatch()
+  const uniqueID = useSelector(avatarSelectors.selectAll).map((trait: Trait) => trait.id).join('_')
+
+  const [ids, setIds] = useState<string[]>([])
 
   const onSaveClick = useCallback(() => {
     const avatar = document.querySelector("#avatar") as HTMLElement;
     const image = document.querySelector(".traitLayer") as HTMLElement;
     if (avatar === null) {
+      return
+    }
+    if(!ids.includes(uniqueID)) {
+      setIds([...ids, uniqueID])
+    } else {
+      alert('Already exists' + uniqueID)
       return
     }
     const imageConfig = {
@@ -33,7 +44,7 @@ function App() {
       .catch((err) => {
         console.log(err)
       })
-  }, [])
+  }, [uniqueID, ids])
 
   return (
     <div className={classes.App}>
