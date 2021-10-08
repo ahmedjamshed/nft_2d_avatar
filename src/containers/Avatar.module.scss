@@ -1,14 +1,15 @@
 .Avatar {
-    display: flex;
-    position: relative;
-    width: 100%;
-    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    height: inherit;
+    width: inherit;
+    position: absolute;
     background-color: white;
 }
 
-@media (max-width: 768px) {
-    .Avatar {
-        width: 100%;
-        height: 100%;
-    }
-  }
+// @media (max-width: 768px) {
+//     .Avatar {
+//         width: 100%;
+//         height: 100%;
+//     }
+//   }

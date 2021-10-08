@@ -40,15 +40,15 @@ function App() {
       <div className={classes.SelectorContainer}>
         <Categories />
         <Traits />
-      </div>
-      <div className={classes.AvatarContainer}>
-        <div className={classes.Avatar}><Avatar /></div>
         <div className={classes.ToolbarContainer}>
           <button type="button" onClick={() => {
             dispatch(resetAvatar())
           }}><FaSyncAlt size={28} /></button>
           <button type="button" onClick={onSaveClick}> <FaSave size={28} /> </button>
         </div>
+      </div>
+      <div className={classes.AvatarContainer}>
+        <div className={classes.Avatar}><Avatar /></div>
       </div>
     </div>
   );
