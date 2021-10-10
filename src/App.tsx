@@ -68,7 +68,7 @@ function App() {
 
   return (
     <div className={classes.App}>
-      {loading ?  <h1>Loading Assets...</h1> : <>
+      {loading ?  <h1>Loading Traits...</h1> : <>
         <div className={classes.SelectorContainer}>
         <Categories />
         <Traits />

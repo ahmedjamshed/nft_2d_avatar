@@ -3,13 +3,16 @@
   flex: 1;
   flex-direction: row;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   overflow: hidden;
 }
 
 .SelectorContainer {
   display: flex;
   flex: 1;
+  padding: 5px;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   overflow: hidden;
 }
 
@@ -17,6 +20,7 @@
   display: flex;
   position: relative;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   flex: 1;
   flex-direction: column;
   overflow: hidden;
