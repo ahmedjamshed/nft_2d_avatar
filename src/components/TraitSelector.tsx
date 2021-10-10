@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { avatarSelectors, upsertTraitToAvatar, removeTraitFromAvatar } from '../store/AvatarSlice';
 import { Trait } from '../types';
+import loadImage from '../utils';
 import classes from './TraitSelector.module.scss'
 
 interface TraitSelectorProps {
@@ -11,7 +12,6 @@ interface TraitSelectorProps {
 
 const TraitSelector = (props: TraitSelectorProps) => {
   const { trait } = props
-  const urlPrefix = process.env.PUBLIC_URL + "/assets/traits";
   const appliedTrait = useSelector<RootState>(state => avatarSelectors.selectById(state, trait.category)) as (Trait | undefined);
   const isApplied = appliedTrait?.id === trait.id
   const dispatch = useDispatch()
@@ -25,7 +25,7 @@ const TraitSelector = (props: TraitSelectorProps) => {
         isApplied ? dispatch(removeTraitFromAvatar(trait.category)) : dispatch(upsertTraitToAvatar(trait))
       }}>
       <img
-        src={urlPrefix + "/" + trait.imageName + ".png"}
+        src={loadImage(trait.imageName)}
         alt={trait.imageName}
       />
     </div>
