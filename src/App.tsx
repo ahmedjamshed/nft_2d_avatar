@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import classes from "./App.module.scss"
 import Avatar from "./containers/Avatar"
@@ -9,7 +9,8 @@ import { toPng } from 'html-to-image'
 import { FaSave, FaSyncAlt } from "react-icons/fa"
 import { avatarSelectors, resetAvatar } from "./store/AvatarSlice";
 import { Trait } from "./types";
-
+import { traitSelectors } from "./store/TraitSlice";
+import loadImage from "./utils";
 
 
 function App() {
@@ -17,38 +18,58 @@ function App() {
   const uniqueID = useSelector(avatarSelectors.selectAll).map((trait: Trait) => trait.id).join('_')
 
   const [ids, setIds] = useState<string[]>([])
+  const [loading, setLoading] = useState(true)
+  const traits = useSelector(traitSelectors.selectAll)
 
-  const onSaveClick = useCallback(() => {
-    const avatar = document.querySelector("#avatar") as HTMLElement;
-    const image = document.querySelector(".traitLayer") as HTMLElement;
-    if (avatar === null) {
-      return
-    }
-    if(!ids.includes(uniqueID)) {
-      setIds([...ids, uniqueID])
-    } else {
-      alert('Already exists' + uniqueID)
-      return
-    }
-    const imageConfig = {
-      cacheBust: true, pixelRatio: 1, height: image.clientHeight, quality: 0.98,
-      width: image.clientWidth, canvasWidth: 3000, canvasHeight: 3000,
-    }
-    toPng(avatar, imageConfig)
-      .then((dataUrl) => {
-        const link = document.createElement('a')
-        link.download = 'Avatar.png'
-        link.href = dataUrl
-        link.click()
+  // Preload images 
+  useEffect(() => {
+    async function loadAllImages() {
+      const promises = traits.map((trait: Trait) => {
+        return new Promise((res, err) => {
+          const img = new Image()
+          img.src = loadImage(trait.imageName)
+          img.onload = res
+        })
       })
-      .catch((err) => {
-        console.log(err)
-      })
+      await Promise.allSettled(promises);
+      setLoading(false)
+    }
+    loadAllImages()
+  }, [traits])
+
+  const onSaveClick = useCallback(async () => {
+    try {
+      const avatar = document.querySelector("#avatar") as HTMLElement;
+      const image = document.querySelector(".traitLayer") as HTMLElement;
+      if (avatar === null) {
+        return
+      }
+      if (!ids.includes(uniqueID)) {
+        setIds([...ids, uniqueID])
+      } else {
+        alert('Already exists' + uniqueID)
+        return
+      }
+      const imageConfig = {
+        cacheBust: true, pixelRatio: 1, height: image.clientHeight, quality: 0.98,
+        width: image.clientWidth, canvasWidth: 3000, canvasHeight: 3000,
+      }
+      const dataUrl = await toPng(avatar, imageConfig)
+      const link = document.createElement('a')
+      link.download = 'Avatar.png'
+      link.href = dataUrl
+      link.click()
+
+    } catch (err: any) {
+      alert(err.message)
+    }
+
   }, [uniqueID, ids])
 
   return (
     <div className={classes.App}>
-      <div className={classes.SelectorContainer}>
+      {loading ?  <h1>Loading Assets...</h1> : <>
+        <div className={classes.SelectorContainer}>
         <Categories />
         <Traits />
         <div className={classes.ToolbarContainer}>
@@ -60,7 +81,8 @@ function App() {
       </div>
       <div className={classes.AvatarContainer}>
         <div className={classes.Avatar}><Avatar /></div>
-      </div>
+      </div></>  }
+      
     </div>
   );
 }

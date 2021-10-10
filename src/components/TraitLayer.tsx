@@ -2,6 +2,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "../store"
 import { categorySelectors } from "../store/CategorySlice"
 import { Category, Trait } from "../types"
+import loadImage from "../utils"
 import classes from './TraitLayer.module.scss'
 
 interface TraitLayerProps {
@@ -12,7 +13,6 @@ const TraitLayer = (props: TraitLayerProps) => {
     const { trait } = props
     const { zIndex } = useSelector<RootState>(state =>
         categorySelectors.selectById(state, trait.category)) as (Category | { zIndex: 0 })
-    const urlPrefix = process.env.PUBLIC_URL + '/assets/traits'
     return (
         <div
             className={classes.TraitLayer}
@@ -21,7 +21,7 @@ const TraitLayer = (props: TraitLayerProps) => {
         >
             <img
                 className={"traitLayer"}
-                src={urlPrefix + "/" + trait.imageName + ".png"}
+                src={loadImage(trait.imageName)}
                 alt={trait.imageName}
             />
         </div>
