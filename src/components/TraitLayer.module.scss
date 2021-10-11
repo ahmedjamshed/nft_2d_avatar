@@ -1,9 +1,12 @@
 .TraitLayer {
+    display: flex;
     max-height: 100%;
     max-width: 100%;
     height: inherit;
     width: inherit;
     position: absolute;
+    justify-content: center;
+    align-items: center;
     img {
         max-height: 100%;
         max-width: 100%;
