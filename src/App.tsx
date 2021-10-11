@@ -5,7 +5,8 @@ import Avatar from "./containers/Avatar"
 import Categories from "./containers/Categories"
 import Traits from "./containers/Traits"
 
-import { toPng } from 'html-to-image'
+// import { toPng } from 'html-to-image'
+import mergeImages from 'merge-images';
 import { FaSave, FaSyncAlt } from "react-icons/fa"
 import { avatarSelectors, resetAvatar } from "./store/AvatarSlice";
 import { Trait } from "./types";
@@ -15,7 +16,7 @@ import loadImage from "./utils";
 
 function App() {
   const dispatch = useDispatch()
-  const uniqueID = useSelector(avatarSelectors.selectAll).map((trait: Trait) => trait.id).join('_')
+  const avatarTraits = useSelector(avatarSelectors.selectAll)
 
   const [ids, setIds] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
@@ -39,22 +40,28 @@ function App() {
 
   const onSaveClick = useCallback(async () => {
     try {
-      const avatar = document.querySelector("#avatar") as HTMLElement;
-      const image = document.querySelector(".traitLayer") as HTMLElement;
-      if (avatar === null) {
-        return
-      }
+      const uniqueID = avatarTraits.map((trait: Trait) => trait.id).join('_');
+      const imagesArray = avatarTraits.map((trait: Trait) => loadImage(trait.imageName))
+      // const avatar = document.querySelector("#avatar") as HTMLElement;
+      // const image = document.querySelector(".traitLayer") as HTMLElement;
+      // if (avatar === null) {
+      //   return
+      // }
       if (!ids.includes(uniqueID)) {
         setIds([...ids, uniqueID])
       } else {
         alert('Already exists' + uniqueID)
         return
       }
-      const imageConfig = {
-        cacheBust: true, pixelRatio: 1, height: image.clientHeight, quality: 0.98,
-        width: image.clientWidth, canvasWidth: 3000, canvasHeight: 3000,
-      }
-      const dataUrl = await toPng(avatar, imageConfig)
+      // const imageConfig = {
+      //   cacheBust: true, pixelRatio: 1, height: image.clientHeight, quality: 0.98,
+      //   width: image.clientWidth, canvasWidth: 3000, canvasHeight: 3000,
+      // }
+      // const dataUrl = await toPng(avatar, imageConfig)
+      const dataUrl = await mergeImages(imagesArray, {
+        width: 4500,
+        height: 4500
+      })
       const link = document.createElement('a')
       link.download = 'Avatar.png'
       link.href = dataUrl
@@ -64,7 +71,7 @@ function App() {
       alert(err.message)
     }
 
-  }, [uniqueID, ids])
+  }, [avatarTraits, ids])
 
   return (
     <div className={classes.App}>
