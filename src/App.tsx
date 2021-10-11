@@ -74,7 +74,7 @@ function App() {
       link.href = dataUrl
       const insertIDAction: any = await dispatch(insertID(uniqueID))
       const insertIDRes = unwrapResult(insertIDAction)
-      if (insertIDRes.status) {
+      if (!insertIDRes.status) {
         alert('Something went wrong')
         return
       }
