@@ -15,13 +15,14 @@ const Avatar = (props: AvatarProps, ) => {
     useEffect(() => {
         setSelectedTraits(Array.from(avatarTraits.values()));
     }, [avatarTraits])
+
     return (
         <div
             id="avatar"
             className={classNames(classes.Avatar)}
         >
             {selectedTraits.map((trait: Trait, index: number) =>
-                <TraitLayer key={index} trait={trait} />
+                <TraitLayer key={trait.id} zIndex={index} trait={trait} />
             )}
         </div>
     )
