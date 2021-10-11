@@ -1,12 +1,12 @@
 const express = require("express");
 
 const path = require("path");
-// const api = require("./api");
+const api = require("./api");
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// app.use("/api", api);
+app.use("/api", api);
 
 app.use(express.static(path.join(__dirname, '..', 'build')));
 app.get("/", (req, res) => {
