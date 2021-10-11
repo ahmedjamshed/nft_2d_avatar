@@ -19,7 +19,7 @@ function App() {
   const avatarTraits = useSelector(avatarSelectors.selectAll)
 
   const [ids, setIds] = useState<string[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const traits = useSelector(traitSelectors.selectAll)
 
   // Preload images 
