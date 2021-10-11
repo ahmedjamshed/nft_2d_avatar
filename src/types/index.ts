@@ -11,5 +11,6 @@ export interface Category {
 }
 
 export interface UsedAvatar {
-    id: string,
+    uniqueID: string,
+    status: false
 }

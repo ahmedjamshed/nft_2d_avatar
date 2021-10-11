@@ -18,17 +18,18 @@ const getKey = async (uniqueID) => {
 }
 
 router.get("/", async (req, res) => {
-    const { uniqueID } = req.params;
-    if(await getKey(uniqueID)) return true
-    return false
+    const { uniqueID } = req.query;
+    if(await getKey(uniqueID)) return res.status(200).send({"result": true})
+    return res.status(200).send({"result": false})
 });
 
 router.post("/", async (req, res) => {
     const { uniqueID } = req.body;
     try {
-        if(await getKey(uniqueID)) return false
+        console.log(uniqueID)
+        if(await getKey(uniqueID)) return res.status(200).send({"result": false})
         await mc.set(uniqueID, 'someUser', { expires: 0 })
-        return true
+        return res.status(200).send({"result": true})
     } catch (e) {
         var err = new Error(e.message);
         err.status = 401;

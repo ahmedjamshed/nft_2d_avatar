@@ -12,8 +12,7 @@ import { avatarSelectors, resetAvatar } from "./store/AvatarSlice";
 import { Trait } from "./types";
 // import { traitSelectors } from "./store/TraitSlice";
 import loadImage from "./utils";
-import { getID, insertID, usedAvatarsSelectors } from "./store/UsedAvatarsSlice";
-import { RootState } from "./store";
+import { getID, insertID } from "./store/UsedAvatarsSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
 
 const IMAGE_SIZE = 4500
@@ -21,8 +20,7 @@ const IMAGE_SIZE = 4500
 function App() {
   const dispatch = useDispatch()
   const avatarTraits = useSelector(avatarSelectors.selectAll)
-  const uniqueID = avatarTraits.map((trait: Trait) => trait.id).join('_');
-  const isExistingID = useSelector<RootState>(state => usedAvatarsSelectors.selectById(state, uniqueID))
+  
 
   // const [loading, setLoading] = useState(false)
   // const traits = useSelector(traitSelectors.selectAll)
@@ -45,14 +43,11 @@ function App() {
 
   const onSaveClick = useCallback(async () => {
     try {
-      if (isExistingID) {
-        alert('Already exists')
-        return
-      }
+      const uniqueID = avatarTraits.map((trait: Trait) => trait.id).join('_');
 
       const getIDAction: any = await dispatch(getID(uniqueID))
       const getIDRes = unwrapResult(getIDAction)
-      if (getIDRes.id) {
+      if (getIDRes.status) {
         alert('Already exists')
         return
       }
@@ -69,6 +64,7 @@ function App() {
       //   width: image.clientWidth, canvasWidth: 3000, canvasHeight: 3000,
       // }
       // const dataUrl = await toPng(avatar, imageConfig)
+
       const dataUrl = await mergeImages(imagesArray, {
         width: IMAGE_SIZE,
         height: IMAGE_SIZE
@@ -78,7 +74,7 @@ function App() {
       link.href = dataUrl
       const insertIDAction: any = await dispatch(insertID(uniqueID))
       const insertIDRes = unwrapResult(insertIDAction)
-      if (insertIDRes.id) {
+      if (insertIDRes.status) {
         alert('Something went wrong')
         return
       }
@@ -88,7 +84,7 @@ function App() {
       alert(err.message)
     }
 
-  }, [avatarTraits, isExistingID, uniqueID, dispatch])
+  }, [avatarTraits, dispatch])
 
   return (
     <div className={classes.App}>
