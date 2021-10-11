@@ -8,7 +8,7 @@ import classes from './Avatar.module.scss'
 
 interface AvatarProps { }
 
-const Avatar = (props: AvatarProps, ) => {
+const Avatar = (props: AvatarProps) => {
     const avatarTraits = useSelector(avatarSelectors.selectAll)
     const [selectedTraits, setSelectedTraits] = useState<Trait[]>([])
 

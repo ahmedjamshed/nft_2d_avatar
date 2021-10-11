@@ -9,3 +9,8 @@ export interface Category {
     zIndex: number,
     isRemovable: boolean
 }
+
+export interface UsedAvatar {
+    uniqueID: string,
+    status: false
+}

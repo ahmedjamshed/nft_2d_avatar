@@ -24,12 +24,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import AvatarSlice from './AvatarSlice'
 import CategorySlice from './CategorySlice'
 import TraitSlice from './TraitSlice'
+import UsedAvatarsSlice from './UsedAvatarsSlice'
 
 const store = configureStore({
   reducer: {
     categories: CategorySlice,
     traits: TraitSlice,
-    avatar: AvatarSlice
+    avatar: AvatarSlice,
+    usedAvatars: UsedAvatarsSlice
   },
 })
 export type RootState = ReturnType<typeof store.getState>
