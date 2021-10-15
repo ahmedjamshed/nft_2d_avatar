@@ -5,10 +5,11 @@
     align-items: flex-start;
     overflow-y: scroll;
     background-color: white;
+    margin: 1rem;
 }
+
 .TraitsGrid {
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.5rem;
 }

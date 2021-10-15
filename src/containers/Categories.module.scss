@@ -2,12 +2,8 @@
     direction: rtl;
     display: flex;
     flex-direction: column;
-    flex: 3;
+    flex: 1;
     position: relative;
     overflow-y: scroll;
     background-color: white;
-}
-
-@media (max-width: 768px) {
-    
 }

@@ -1,79 +1,112 @@
-.App {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
-  overflow: hidden;
-}
- h1 {
-  display: flex;
-  flex: 1;
-  align-self: flex-start;
- }
-.SelectorContainer {
-  display: flex;
-  flex: 1;
-  padding: 5px;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
-  overflow: hidden;
-}
+@import './variables.scss';
 
-.AvatarContainer {
-  display: flex;
-  position: relative;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
-  flex: 1;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.Avatar {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-}
-
-.ToolbarContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  background-color: white;
-  align-items: center;
-  padding: 15px;
-  flex: 1;
-}
-
-button {
-  background-color: black;
+%ButtonShared {
+  display: none;
+  background-color: $accent-color;
   color: white;
-  margin: 10px 0px;
-  padding: 10px;
+  margin: 10px 10px;
+  padding: 0.5rem 2rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 1px;
+  position: relative;
   display: inline-block;
   font-size: 14px;
-  font-weight: bold;
   cursor: pointer;
   &:hover {
     background-color: gray;
   }
 }
 
+.MainContainer {
+  display: block;
+  position: absolute;
+  bottom:0;
+  top:0;
+  left:0;
+  right:0;
+  margin: 5rem 10rem;
+  overflow: hidden;
+}
+
+.Main {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+h1 {
+  display: flex;
+  flex: 1;
+  align-self: flex-start;
+}
+
+.FilterContainer {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  // padding: 20px 10px;
+}
+
+.SelectorContainer {
+  // margin: 20px 10px;
+  display: flex;
+  flex: 1;
+  // padding: 5px;
+  overflow: hidden;
+}
+
+.AvatarContainer {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.Avatar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  flex: 1;
+  border: 5px solid $custom-black;
+  background-color: $custom-black;
+}
+
+.ToolbarContainer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex: 1;
+  align-items: center;
+}
+
+.ButtonMint {
+  @extend %ButtonShared;
+  background-color: $primary-color
+}
+
+.ButtonReset {
+  @extend %ButtonShared;
+  padding: 0.5rem 0.5rem;
+}
+
 @media (max-width: 768px) {
-  .App {
-    flex-direction: column-reverse;
+  .MainContainer {
+    margin: 0px;
   }
-  .AvatarContainer {
-    flex-direction: column-reverse;
+  .Main {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
   }
-  .SelectorContainer {
+
+  .FilterContainer {
     padding-bottom: 30px;
   }
-  
+
 }

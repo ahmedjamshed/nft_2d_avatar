@@ -18,9 +18,9 @@ const CategorySelector = (props: CategorySelectorProps) => {
         <div id="CategorySelector"
             className={classNames(classes.CategorySelector)}
             onClick={() => dispatch(selectCategory(category))}>
-            <span className={classNames(classes.CategoryText, { [classes.Selected]: category.name === selectedCategory?.name })}>
+            {/* <span className={classNames(classes.CategoryText, { [classes.Selected]: category.name === selectedCategory?.name })}>
                 {category.name.replace('_', ' ')}
-            </span>
+            </span> */}
         </div>
 
     )

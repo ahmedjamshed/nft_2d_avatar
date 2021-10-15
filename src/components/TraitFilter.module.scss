@@ -1,0 +1,30 @@
+@import '../variables.scss';
+
+.TraitFilter {
+    display: flex;
+    flex:1;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: $shadow;
+    align-self: flex-end;
+}
+
+.button {
+    background-color: white;
+    color: $light-grey;
+    border: none;
+    margin: 0px;
+    padding: 8px 46px;
+    border-radius: 0;
+    font-weight: normal;
+    &:hover {
+        background-color: $primary-color;
+        color: #fff;
+    }
+}
+
+.selected {
+    background-color: $primary-color;
+    color: #fff;
+}

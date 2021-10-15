@@ -1,4 +1,6 @@
+import { Rating } from '@mui/material';
 import classNames from 'classnames';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { avatarSelectors, upsertTraitToAvatar, removeTraitFromAvatar } from '../store/AvatarSlice';
@@ -12,6 +14,7 @@ interface TraitSelectorProps {
 
 const TraitSelector = (props: TraitSelectorProps) => {
   const { trait } = props
+  const [rating, setRating] = useState<number>(2.5);
   const appliedTrait = useSelector<RootState>(state => avatarSelectors.selectById(state, trait.category)) as (Trait | undefined);
   const isApplied = appliedTrait?.id === trait.id
   const dispatch = useDispatch()
@@ -28,6 +31,18 @@ const TraitSelector = (props: TraitSelectorProps) => {
         src={loadImage(trait.imageName)}
         alt={trait.imageName}
       />
+      <h5>Item Name</h5>
+      <div className={classes.RatingContainer}>
+        <Rating
+          name="simple-controlled"
+          size="small"
+          value={rating}
+          onChange={(event, newValue) => {
+            setRating(newValue || 0);
+          }}
+        />
+        <p>{rating.toFixed(1)}</p>
+      </div>
     </div>
 
   );
