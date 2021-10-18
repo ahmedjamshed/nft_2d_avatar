@@ -3,7 +3,8 @@
 .TraitSelector {
     background-color: $light-grey;
     box-sizing: border-box;
-    width: clamp(8rem, 10rem, 12rem); ;
+    padding: 5px 0px;
+    width: minmax(150px, 1fr);
     img {
         max-height: 100%;
         max-width: 100%;
@@ -11,11 +12,17 @@
     h5 {
         margin: 0.5rem;
         color: white;
+        text-transform: capitalize;
     }
 }
 
 .selected {
     border: 5px solid red;
+}
+
+.fixed {
+    position: absolute;
+    bottom: 5;
 }
 
 .RatingContainer {

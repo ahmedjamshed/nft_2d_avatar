@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import classes from "./App.module.scss"
 import Avatar from "./containers/Avatar"
@@ -7,7 +7,7 @@ import Traits from "./containers/Traits"
 
 // import { toPng } from 'html-to-image'
 import mergeImages from 'merge-images';
-import { FaSave, FaSyncAlt } from "react-icons/fa"
+import { FaChevronLeft, FaChevronDown, FaSyncAlt, FaCog } from "react-icons/fa"
 import { avatarSelectors, resetAvatar } from "./store/AvatarSlice";
 import { Trait } from "./types";
 // import { traitSelectors } from "./store/TraitSlice";
@@ -91,13 +91,21 @@ function App() {
     <div className={classes.MainContainer}>
       <div className={classes.Main}>
         <div className={classes.FilterContainer}>
-          {/* <TraitFilter /> */}
+          <TraitFilter />
           <div className={classes.SelectorContainer}>
             <Categories />
             <Traits />
           </div>
         </div>
         <div className={classes.AvatarContainer}>
+          <div className={classes.AvatarHeadingContainer}>
+            <div className={classes.AvatarHeader}>
+              <FaChevronLeft className={classes.heading} />
+              <h1>METACIPLES</h1>
+              <FaChevronDown className={classes.heading} />
+            </div>
+            <FaCog className={classes.settings} />
+          </div>
           <div className={classes.Avatar}><Avatar /></div>
           <div className={classes.ToolbarContainer}>
             <button type="button" className={classes.ButtonReset} onClick={() => {

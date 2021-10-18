@@ -2,10 +2,10 @@
 
 .CategorySelector {
     direction: ltr;
-    display: flex;
     cursor: pointer;
-    margin: 5px;
-    padding: 5px;
+    margin: 1vh 0px;
+    width: 3.5vw;
+    height: 3.5vw;
     background-color: $dark-grey;
     border-radius: 1px;
     align-items: center;
@@ -22,7 +22,7 @@
 }
 
 .Selected {
-    color: red;
+    border: 5px solid red;
 }
 
 
@@ -30,6 +30,11 @@
     .CategoryText {
         font-weight: 500;
         font-size: 0.8em;
+    }
+
+    .CategorySelector {
+        width: 11vw;
+        height: 11vw;
     }
     
   }

@@ -12,16 +12,13 @@ const UsedAvatarsAdapter = createEntityAdapter<UsedAvatar>({
 export const getID = createAsyncThunk('usedAvatarSlice/getID', async (uniqueID: string, { getState }) => {
     const response = await axios.get(`${BASE_URL}/`, { params: { uniqueID } })
     return { id: uniqueID, status: response.data['result'] }
-
-}
-)
+})
 
 export const insertID = createAsyncThunk('usedAvatarSlice/insertID', async (uniqueID: string, { getState }) => {
     const data = { uniqueID }
     const response = await axios.post<any>(`${BASE_URL}/`, data)
     return { id: uniqueID, status: response.data['result'] }
-}
-)
+})
 
 const initialState = UsedAvatarsAdapter.getInitialState()
 const usedAvatarSlice = createSlice({

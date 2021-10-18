@@ -14,7 +14,7 @@ interface TraitSelectorProps {
 
 const TraitSelector = (props: TraitSelectorProps) => {
   const { trait } = props
-  const [rating, setRating] = useState<number>(2.5);
+  const [rating, setRating] = useState<number>(3.0);
   const appliedTrait = useSelector<RootState>(state => avatarSelectors.selectById(state, trait.category)) as (Trait | undefined);
   const isApplied = appliedTrait?.id === trait.id
   const dispatch = useDispatch()
@@ -27,24 +27,25 @@ const TraitSelector = (props: TraitSelectorProps) => {
       onClick={() => {
         isApplied ? dispatch(removeTraitFromAvatar(trait.category)) : dispatch(upsertTraitToAvatar(trait))
       }}>
-      <img
-        src={loadImage(trait.imageName)}
-        alt={trait.imageName}
-      />
-      <h5>Item Name</h5>
-      <div className={classes.RatingContainer}>
-        <Rating
-          name="simple-controlled"
-          size="small"
-          value={rating}
-          onChange={(event, newValue) => {
-            setRating(newValue || 0);
-          }}
+      <div>
+        <img
+          src={loadImage(trait.imageName)}
+          alt={trait.imageName}
         />
-        <p>{rating.toFixed(1)}</p>
+        <h5>{trait.imageName.replace('_', ' ')}</h5>
+        <div className={classes.RatingContainer}>
+          <Rating
+            name="simple-controlled"
+            size="small"
+            value={rating}
+            onChange={(event, newValue) => {
+              setRating(newValue || 0);
+            }}
+          />
+          <p>{rating.toFixed(1)}</p>
+        </div>
       </div>
     </div>
-
   );
 }
 

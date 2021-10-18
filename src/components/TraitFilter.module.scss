@@ -1,13 +1,14 @@
 @import '../variables.scss';
 
 .TraitFilter {
-    display: flex;
-    flex:1;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     background-color: white;
     border-radius: 5px;
+    margin: 1.5vh 2vw;
+    margin-left: 6vw;
     box-shadow: $shadow;
-    align-self: flex-end;
+    justify-content: space-around;
 }
 
 .button {
@@ -15,9 +16,9 @@
     color: $light-grey;
     border: none;
     margin: 0px;
-    padding: 8px 46px;
+    padding: 1vh;
     border-radius: 0;
-    font-weight: normal;
+    font-weight: 800;
     &:hover {
         background-color: $primary-color;
         color: #fff;
