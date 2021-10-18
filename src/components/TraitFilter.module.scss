@@ -1,0 +1,31 @@
+@import '../variables.scss';
+
+.TraitFilter {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: white;
+    border-radius: 5px;
+    margin: 1.5vh 2vw;
+    margin-left: 6vw;
+    box-shadow: $shadow;
+    justify-content: space-around;
+}
+
+.button {
+    background-color: white;
+    color: $light-grey;
+    border: none;
+    margin: 0px;
+    padding: 1vh;
+    border-radius: 0;
+    font-weight: 800;
+    &:hover {
+        background-color: $primary-color;
+        color: #fff;
+    }
+}
+
+.selected {
+    background-color: $primary-color;
+    color: #fff;
+}

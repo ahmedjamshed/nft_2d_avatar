@@ -1,13 +1,16 @@
+@import '../variables.scss';
+
 .CategorySelector {
     direction: ltr;
-    display: flex;
     cursor: pointer;
-    margin: 5px 10px;
-    padding: 10px 5px;
-    background-color: black;
-    border-radius: 10px;
+    margin: 1vh 0px;
+    width: 3.5vw;
+    height: 3.5vw;
+    background-color: $dark-grey;
+    border-radius: 1px;
     align-items: center;
     justify-content: center;  
+    user-select: none;
 }
 .CategoryText {
     color: white;
@@ -15,16 +18,23 @@
     font-size: 1em;
     text-align: center;
     overflow: hidden;
+    user-select: none;
 }
 
 .Selected {
-    color: red;
+    border: 5px solid red;
 }
+
 
 @media (max-width: 768px) {
     .CategoryText {
         font-weight: 500;
         font-size: 0.8em;
+    }
+
+    .CategorySelector {
+        width: 11vw;
+        height: 11vw;
     }
     
   }

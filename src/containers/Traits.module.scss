@@ -1,14 +1,53 @@
+@import '../variables.scss';
+
 .Traits {
-    display: flex;
-    flex: 6;
-    justify-content: center;
-    align-items: flex-start;
+    position: relative;
     overflow-y: scroll;
     background-color: white;
+    box-sizing: border-box;
+    margin: 0px 1rem;
+    height: 100%;
+
+    -webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    -webkit-scrollbar {
+        width: 1px;
+    }
+
+    -webkit-scrollbar-thumb {
+        border-radius: 20px;
+    }
 }
+
 .TraitsGrid {
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: clamp(0.5vw, 1vw, 1.5vw);
+}
+
+.SrollBtnContainer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    .ScrollBtn {
+        position: sticky;
+        width: 100%;
+        background-color: $custom-black;
+        cursor: pointer;
+        border: none;
+        outline: none;
+
+        .Icon {
+            color: white;
+            font-size: large;
+            margin: 0.7vh;
+        }
+
+        &:hover {
+            background-color: $dark-grey;
+        }
+    }
 }

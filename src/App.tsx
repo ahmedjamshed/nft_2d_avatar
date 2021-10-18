@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import classes from "./App.module.scss"
 import Avatar from "./containers/Avatar"
@@ -7,20 +7,21 @@ import Traits from "./containers/Traits"
 
 // import { toPng } from 'html-to-image'
 import mergeImages from 'merge-images';
-import { FaSave, FaSyncAlt } from "react-icons/fa"
+import { FaChevronLeft, FaChevronDown, FaSyncAlt, FaCog } from "react-icons/fa"
 import { avatarSelectors, resetAvatar } from "./store/AvatarSlice";
 import { Trait } from "./types";
 // import { traitSelectors } from "./store/TraitSlice";
 import loadImage from "./utils";
 import { getID, insertID } from "./store/UsedAvatarsSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
+import TraitFilter from "./components/TraitFilter";
 
 const IMAGE_SIZE = 4500
 
 function App() {
   const dispatch = useDispatch()
   const avatarTraits = useSelector(avatarSelectors.selectAll)
-  
+
 
   // const [loading, setLoading] = useState(false)
   // const traits = useSelector(traitSelectors.selectAll)
@@ -87,26 +88,33 @@ function App() {
   }, [avatarTraits, dispatch])
 
   return (
-    <div className={classes.App}>
-      {
-        // loading ?  <h1>Loading Traits...</h1> :
-        <>
+    <div className={classes.MainContainer}>
+      <div className={classes.Main}>
+        <div className={classes.FilterContainer}>
+          <TraitFilter />
           <div className={classes.SelectorContainer}>
             <Categories />
             <Traits />
-            <div className={classes.ToolbarContainer}>
-              <button type="button" onClick={() => {
-                dispatch(resetAvatar())
-              }}><FaSyncAlt size={28} /></button>
-              <button type="button" onClick={onSaveClick}> <FaSave size={28} /> </button>
+          </div>
+        </div>
+        <div className={classes.AvatarContainer}>
+          <div className={classes.AvatarHeadingContainer}>
+            <div className={classes.AvatarHeader}>
+              <FaChevronLeft className={classes.heading} />
+              <h1>METACIPLES</h1>
+              <FaChevronDown className={classes.heading} />
             </div>
+            <FaCog className={classes.settings} />
           </div>
-          <div className={classes.AvatarContainer}>
-            <div className={classes.Avatar}><Avatar /></div>
+          <div className={classes.Avatar}><Avatar /></div>
+          <div className={classes.ToolbarContainer}>
+            <button type="button" className={classes.ButtonReset} onClick={() => {
+              dispatch(resetAvatar())
+            }}><FaSyncAlt size={14} /></button>
+            <button type="button" className={classes.ButtonMint} onClick={onSaveClick}> MINT </button>
           </div>
-        </>
-      }
-
+        </div>
+      </div>
     </div>
   );
 }

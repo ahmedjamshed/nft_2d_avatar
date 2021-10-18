@@ -16,11 +16,11 @@ const CategorySelector = (props: CategorySelectorProps) => {
     return (
 
         <div id="CategorySelector"
-            className={classNames(classes.CategorySelector)}
+            className={classNames(classes.CategorySelector, { [classes.Selected]: category.name === selectedCategory?.name })}
             onClick={() => dispatch(selectCategory(category))}>
-            <span className={classNames(classes.CategoryText, { [classes.Selected]: category.name === selectedCategory?.name })}>
+            {/* <span className={classNames(classes.CategoryText, { [classes.Selected]: category.name === selectedCategory?.name })}>
                 {category.name.replace('_', ' ')}
-            </span>
+            </span> */}
         </div>
 
     )
