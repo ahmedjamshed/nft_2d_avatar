@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useLayoutEffect, useRef, LegacyRef } from "react"
+import { useEffect, useState, useCallback, useRef } from "react"
 import { useSelector } from "react-redux"
 import { FaChevronDown } from "react-icons/fa"
 import TraitSelector from "../components/TraitSelector"
